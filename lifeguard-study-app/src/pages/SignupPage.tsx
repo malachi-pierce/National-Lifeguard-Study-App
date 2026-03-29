@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
 import { auth } from '../services/firebase'
 import { LifeBuoy, Eye, EyeOff } from 'lucide-react'
 import { LoadingSpinner } from '../components/LoadingSpinner'
@@ -38,10 +37,21 @@ export function SignupPage() {
     }
 
     try {
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password)
-      await updateProfile(userCredential.user, {
-        displayName: email.split('@')[0]
-      })
+      let userCredential
+      if (auth._isMock && auth._mockService) {
+        // Use mock auth
+        userCredential = await auth._mockService.createUserWithEmailAndPassword(email, password)
+        await auth._mockService.updateProfile(userCredential.user, {
+          displayName: email.split('@')[0]
+        })
+      } else {
+        // Use real Firebase
+        const { createUserWithEmailAndPassword, updateProfile } = require('firebase/auth')
+        userCredential = await createUserWithEmailAndPassword(auth, email, password)
+        await updateProfile(userCredential.user, {
+          displayName: email.split('@')[0]
+        })
+      }
       setStep('onboarding')
     } catch (err: unknown) {
       const errorMessage = err instanceof Error ? err.message : 'Signup failed'
