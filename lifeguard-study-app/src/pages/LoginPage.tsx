@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { signInWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '../services/firebase'
 import { LifeBuoy, Eye, EyeOff } from 'lucide-react'
 import { LoadingSpinner } from '../components/LoadingSpinner'
@@ -25,7 +24,15 @@ export function LoginPage() {
     }
 
     try {
-      await signInWithEmailAndPassword(auth, email, password)
+      let result
+      if (auth._isMock && auth._mockService) {
+        // Use mock auth
+        result = await auth._mockService.signInWithEmailAndPassword(email, password)
+      } else {
+        // Use real Firebase
+        const { signInWithEmailAndPassword } = require('firebase/auth')
+        result = await signInWithEmailAndPassword(auth, email, password)
+      }
       navigate('/')
     } catch (err: unknown) {
       const errorMessage = err instanceof Error ? err.message : 'Login failed'
@@ -121,3 +128,4 @@ export function LoginPage() {
     </div>
   )
 }
+
