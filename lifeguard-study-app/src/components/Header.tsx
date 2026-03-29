@@ -8,6 +8,10 @@ export function Header() {
   const { user } = useAuth()
 
   const handleLogout = async () => {
+    if (!auth) {
+      console.error('Firebase not initialized')
+      return
+    }
     try {
       await signOut(auth)
     } catch (error) {

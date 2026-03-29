@@ -1,6 +1,5 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
-import { UserPreferences, TopicStatus } from '../types'
 
 interface AppState {
   theme: 'light' | 'dark' | 'system'

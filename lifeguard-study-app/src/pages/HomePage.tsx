@@ -1,9 +1,9 @@
 import { useState, useMemo } from 'react'
 import { Link } from 'react-router-dom'
-import { Flame, Clock, TrendingUp, Search, BookOpen } from 'lucide-react'
+import { Search, BookOpen } from 'lucide-react'
 import { TopicCard } from '../components/TopicCard'
 import { ProgressCard } from '../components/ProgressCard'
-import { Topic, TopicStatus } from '../types'
+import { Topic } from '../types'
 
 // Sample topics data for Phase 1 (will be replaced with Firestore data in Phase 2)
 const sampleTopics: Topic[] = [

@@ -1,5 +1,5 @@
 import { useLocation, Link } from 'react-router-dom'
-import { ArrowLeft, CheckCircle, XCircle, Clock, TrendingUp } from 'lucide-react'
+import { ArrowLeft, CheckCircle, XCircle } from 'lucide-react'
 import { QuizAttempt, Question } from '../types'
 
 export function ResultsPage() {

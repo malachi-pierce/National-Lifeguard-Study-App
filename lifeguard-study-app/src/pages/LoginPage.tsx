@@ -18,6 +18,12 @@ export function LoginPage() {
     setLoading(true)
     setError('')
 
+    if (!auth) {
+      setError('Firebase not initialized. Please add your Firebase config.')
+      setLoading(false)
+      return
+    }
+
     try {
       await signInWithEmailAndPassword(auth, email, password)
       navigate('/')

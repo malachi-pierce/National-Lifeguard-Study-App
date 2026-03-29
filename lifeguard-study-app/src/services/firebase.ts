@@ -13,12 +13,18 @@ const firebaseConfig = {
   appId: "YOUR_APP_ID"
 }
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig)
+// Check if using placeholder config
+const isPlaceholder = firebaseConfig.apiKey === "YOUR_API_KEY"
 
-// Export services
-export const auth = getAuth(app)
-export const db = getFirestore(app)
-export const storage = getStorage(app)
+// Initialize Firebase only if not using placeholder
+let app: any = null
+if (!isPlaceholder) {
+  app = initializeApp(firebaseConfig)
+}
+
+// Export services (null if not initialized)
+export const auth = app ? getAuth(app) : null
+export const db = app ? getFirestore(app) : null
+export const storage = app ? getStorage(app) : null
 
 export default app

@@ -31,6 +31,12 @@ export function SignupPage() {
     setLoading(true)
     setError('')
 
+    if (!auth) {
+      setError('Firebase not initialized. Please add your Firebase config.')
+      setLoading(false)
+      return
+    }
+
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password)
       await updateProfile(userCredential.user, {
