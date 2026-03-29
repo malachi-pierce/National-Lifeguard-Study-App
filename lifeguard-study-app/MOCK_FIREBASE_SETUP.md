@@ -93,7 +93,7 @@ localStorage.removeItem('mock_current_user')
 
 ## Switching to Real Firebase
 
-When your kid wants to add real Firebase credentials:
+When you want to add real Firebase credentials:
 
 1. Go to [Firebase Console](https://console.firebase.google.com/)
 2. Create a new project
@@ -128,7 +128,7 @@ No other code changes needed - the dependency injection handles everything!
 - `src/pages/LoginPage.tsx` - Works with both real and mock auth
 - `src/pages/SignupPage.tsx` - Works with both real and mock auth
 
-## For Your Kid
+## For You
 
 This setup is great for learning because:
 
@@ -160,5 +160,4 @@ Add your credentials to `firebase.ts` and you're done! No other changes needed.
 
 ## Questions?
 
-The mock services are fully compatible with Firebase's API, so any Firebase documentation will help your kid understand how the app works!
-
+The mock services are fully compatible with Firebase's API, so any Firebase documentation will help you understand how the app works!
