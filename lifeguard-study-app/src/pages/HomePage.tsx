@@ -1,8 +1,8 @@
 import { useState, useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import { Search, BookOpen } from 'lucide-react'
-import { TopicCard } from '../components/TopicCard'
-import { ProgressCard } from '../components/ProgressCard'
+import { TopicCard } from '../components/TopicCard.tsx'
+import { ProgressCard } from '../components/ProgressCard.tsx'
 import { Topic } from '../types'
 
 // Sample topics data for Phase 1 (will be replaced with Firestore data in Phase 2)

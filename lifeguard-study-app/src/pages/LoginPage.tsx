@@ -24,14 +24,13 @@ export function LoginPage() {
     }
 
     try {
-      let result
       if (auth._isMock && auth._mockService) {
         // Use mock auth
-        result = await auth._mockService.signInWithEmailAndPassword(email, password)
+        await auth._mockService.signInWithEmailAndPassword(email, password)
       } else {
         // Use real Firebase
         const { signInWithEmailAndPassword } = require('firebase/auth')
-        result = await signInWithEmailAndPassword(auth, email, password)
+        await signInWithEmailAndPassword(auth, email, password)
       }
       navigate('/')
     } catch (err: unknown) {
